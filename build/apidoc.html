@@ -61,12 +61,236 @@
 
     <li class="apidocModuleLi"><a href="#apidoc.module.lerna">module lerna</a><ol>
 
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.lerna.init">
+            function <span class="apidocSignatureSpan">lerna.</span>init
+            <span class="apidocSignatureSpan">(cmd, cwd)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.lerna.progress_bar">
+            function <span class="apidocSignatureSpan">lerna.</span>progress_bar
+            <span class="apidocSignatureSpan">(total)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.lerna.init">module lerna.init</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.lerna.init.init">
+            function <span class="apidocSignatureSpan">lerna.</span>init
+            <span class="apidocSignatureSpan">(cmd, cwd)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.lerna.progress_bar">module lerna.progress_bar</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.lerna.progress_bar.progress_bar">
+            function <span class="apidocSignatureSpan">lerna.</span>progress_bar
+            <span class="apidocSignatureSpan">(total)</span>
+            </a>
+
+        </li>
+
     </ol></li>
 
 </ol></div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.lerna" id="apidoc.module.lerna">module lerna</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.lerna.init" id="apidoc.element.lerna.init">
+        function <span class="apidocSignatureSpan">lerna.</span>init
+        <span class="apidocSignatureSpan">(cmd, cwd)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">init = function (cmd, cwd) {
+  var version = require(&#x22;../package.json&#x22;).version;
+  console.log();
+  console.log(chalk.bold(&#x22;Lerna &#x22; + cmd +  &#x22; v&#x22; + version));
+  console.log();
+
+  var config = {};
+
+  config.packagesLoc = path.join(cwd, &#x22;packages&#x22;);
+
+  if (!fs.existsSync(config.packagesLoc)) {
+    console.log(&#x22;Creating packages folder.&#x22;);
+    fs.mkdirSync(config.packagesLoc);
+  }
+
+  config.packageLoc = path.join(cwd, &#x22;package.json&#x22;);
+
+  if (!fs.existsSync(config.packageLoc)) {
+    console.log(&#x22;Creating package.json&#x22;);
+    fs.writeFileSync(config.packageLoc, JSON.stringify({
+      private: true,
+      dependencies: {
+        lerna: &#x22;^&#x22; + version,
+      }
+    }, null, &#x22;  &#x22;));
+  }
+
+  config.versionLoc  = path.join(cwd, &#x22;VERSION&#x22;);
+
+  if (fs.existsSync(config.versionLoc)) {
+    config.currentVersion = fs.readFileSync(config.versionLoc, &#x22;utf8&#x22;).trim();
+  } else {
+    console.log(&#x22;Creating VERSION file.&#x22;);
+    fs.writeFileSync(config.versionLoc, &#x22;0.0.0&#x22;);
+    config.currentVersion = &#x22;0.0.0&#x22;;
+  }
+
+  console.log(&#x22;Current version: &#x22; + config.currentVersion);
+  console.log(&#x22;Version file location: &#x22; + config.versionLoc);
+  console.log(&#x22;Packages location: &#x22; + config.packagesLoc);
+  console.log();
+
+  return config;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.lerna.progress_bar" id="apidoc.element.lerna.progress_bar">
+        function <span class="apidocSignatureSpan">lerna.</span>progress_bar
+        <span class="apidocSignatureSpan">(total)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">progress_bar = function (total) {
+  var bar = new ProgressBar(&#x22;:packagename ╢:bar╟&#x22;, {
+    total: total,
+    complete: &#x22;█&#x22;,
+    incomplete: &#x22;░&#x22;,
+    clear: true,
+
+    // terminal columns - package name length - additional characters length
+    width: (process.stdout.columns || 100) - 50 - 3
+  });
+
+  return function (name) {
+    bar.tick({
+      packagename: pad(name.slice(0, 50), 50)
+    });
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.lerna.init" id="apidoc.module.lerna.init">module lerna.init</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.lerna.init.init" id="apidoc.element.lerna.init.init">
+        function <span class="apidocSignatureSpan">lerna.</span>init
+        <span class="apidocSignatureSpan">(cmd, cwd)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">init = function (cmd, cwd) {
+  var version = require(&#x22;../package.json&#x22;).version;
+  console.log();
+  console.log(chalk.bold(&#x22;Lerna &#x22; + cmd +  &#x22; v&#x22; + version));
+  console.log();
+
+  var config = {};
+
+  config.packagesLoc = path.join(cwd, &#x22;packages&#x22;);
+
+  if (!fs.existsSync(config.packagesLoc)) {
+    console.log(&#x22;Creating packages folder.&#x22;);
+    fs.mkdirSync(config.packagesLoc);
+  }
+
+  config.packageLoc = path.join(cwd, &#x22;package.json&#x22;);
+
+  if (!fs.existsSync(config.packageLoc)) {
+    console.log(&#x22;Creating package.json&#x22;);
+    fs.writeFileSync(config.packageLoc, JSON.stringify({
+      private: true,
+      dependencies: {
+        lerna: &#x22;^&#x22; + version,
+      }
+    }, null, &#x22;  &#x22;));
+  }
+
+  config.versionLoc  = path.join(cwd, &#x22;VERSION&#x22;);
+
+  if (fs.existsSync(config.versionLoc)) {
+    config.currentVersion = fs.readFileSync(config.versionLoc, &#x22;utf8&#x22;).trim();
+  } else {
+    console.log(&#x22;Creating VERSION file.&#x22;);
+    fs.writeFileSync(config.versionLoc, &#x22;0.0.0&#x22;);
+    config.currentVersion = &#x22;0.0.0&#x22;;
+  }
+
+  console.log(&#x22;Current version: &#x22; + config.currentVersion);
+  console.log(&#x22;Version file location: &#x22; + config.versionLoc);
+  console.log(&#x22;Packages location: &#x22; + config.packagesLoc);
+  console.log();
+
+  return config;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.lerna.progress_bar" id="apidoc.module.lerna.progress_bar">module lerna.progress_bar</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.lerna.progress_bar.progress_bar" id="apidoc.element.lerna.progress_bar.progress_bar">
+        function <span class="apidocSignatureSpan">lerna.</span>progress_bar
+        <span class="apidocSignatureSpan">(total)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">progress_bar = function (total) {
+  var bar = new ProgressBar(&#x22;:packagename ╢:bar╟&#x22;, {
+    total: total,
+    complete: &#x22;█&#x22;,
+    incomplete: &#x22;░&#x22;,
+    clear: true,
+
+    // terminal columns - package name length - additional characters length
+    width: (process.stdout.columns || 100) - 50 - 3
+  });
+
+  return function (name) {
+    bar.tick({
+      packagename: pad(name.slice(0, 50), 50)
+    });
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
 
 </div>
 
