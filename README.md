@@ -1,9 +1,14 @@
-# api documentation for  [lerna (v1.1.3)](https://github.com/sebmck/lerna#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-lerna.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-lerna) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-lerna.svg)](https://travis-ci.org/npmdoc/node-npmdoc-lerna)
+# npmdoc-lerna
+
+#### api documentation for  [lerna (v1.1.3)](https://github.com/sebmck/lerna#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-lerna.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-lerna) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-lerna.svg)](https://travis-ci.org/npmdoc/node-npmdoc-lerna)
+
 #### Tool for managing JavaScript projects with multiple packages
 
-[![NPM](https://nodei.co/npm/lerna.png?downloads=true)](https://www.npmjs.com/package/lerna)
+[![NPM](https://nodei.co/npm/lerna.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/lerna)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-lerna/build/screenCapture.buildNpmdoc.browser._2Fhome_2Ftravis_2Fbuild_2Fnpmdoc_2Fnode-npmdoc-lerna_2Ftmp_2Fbuild_2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-lerna/build/apidoc.html)
+- [https://npmdoc.github.io/node-npmdoc-lerna/build/apidoc.html](https://npmdoc.github.io/node-npmdoc-lerna/build/apidoc.html)
+
+[![apidoc](https://npmdoc.github.io/node-npmdoc-lerna/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-lerna/build/apidoc.html)
 
 ![npmPackageListing](https://npmdoc.github.io/node-npmdoc-lerna/build/screenCapture.npmPackageListing.svg)
 
@@ -17,8 +22,7 @@
 
 {
     "author": {
-        "name": "Sebastian McKenzie",
-        "email": "sebmck@gmail.com"
+        "name": "Sebastian McKenzie"
     },
     "bin": {
         "lerna": "./bin/lerna.js"
@@ -51,21 +55,17 @@
     "main": "index.js",
     "maintainers": [
         {
-            "name": "hzoo",
-            "email": "hi@henryzoo.com"
+            "name": "hzoo"
         },
         {
-            "name": "sebmck",
-            "email": "sebmck@gmail.com"
+            "name": "sebmck"
         },
         {
-            "name": "thejameskyle",
-            "email": "me@thejameskyle.com"
+            "name": "thejameskyle"
         }
     ],
     "name": "lerna",
     "optionalDependencies": {},
-    "readme": "ERROR: No README data found!",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/sebmck/lerna.git"
@@ -77,16 +77,6 @@
     "version": "1.1.3"
 }
 ```
-
-
-
-# <a name="apidoc.tableOfContents"></a>[table of contents](#apidoc.tableOfContents)
-
-#### [module lerna](#apidoc.module.lerna)
-
-
-
-# <a name="apidoc.module.lerna"></a>[module lerna](#apidoc.module.lerna)
 
 
 
