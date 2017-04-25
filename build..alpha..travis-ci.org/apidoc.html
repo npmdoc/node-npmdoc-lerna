@@ -63,45 +63,85 @@
 
         <li>
 
-            <a class="apidocElementLiA" href="#apidoc.element.lerna.init">
-            function <span class="apidocSignatureSpan">lerna.</span>init
-            <span class="apidocSignatureSpan">(cmd, cwd)</span>
-            </a>
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">lerna.</span>bootstrap</span>
 
         </li>
 
         <li>
 
-            <a class="apidocElementLiA" href="#apidoc.element.lerna.progress_bar">
-            function <span class="apidocSignatureSpan">lerna.</span>progress_bar
-            <span class="apidocSignatureSpan">(total)</span>
-            </a>
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">lerna.</span>publish</span>
 
         </li>
 
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.lerna.init">module lerna.init</a><ol>
-
         <li>
 
-            <a class="apidocElementLiA" href="#apidoc.element.lerna.init.init">
-            function <span class="apidocSignatureSpan">lerna.</span>init
-            <span class="apidocSignatureSpan">(cmd, cwd)</span>
-            </a>
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">lerna.</span>updated</span>
 
         </li>
 
     </ol></li>
 
-    <li class="apidocModuleLi"><a href="#apidoc.module.lerna.progress_bar">module lerna.progress_bar</a><ol>
+    <li class="apidocModuleLi"><a href="#apidoc.module.lerna.bootstrap">module lerna.bootstrap</a><ol>
 
         <li>
 
-            <a class="apidocElementLiA" href="#apidoc.element.lerna.progress_bar.progress_bar">
-            function <span class="apidocSignatureSpan">lerna.</span>progress_bar
-            <span class="apidocSignatureSpan">(total)</span>
+            <a class="apidocElementLiA" href="#apidoc.element.lerna.bootstrap.execute">
+            function <span class="apidocSignatureSpan">lerna.bootstrap.</span>execute
+            <span class="apidocSignatureSpan">(config)</span>
             </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">lerna.bootstrap.</span>description</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.lerna.publish">module lerna.publish</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.lerna.publish.execute">
+            function <span class="apidocSignatureSpan">lerna.publish.</span>execute
+            <span class="apidocSignatureSpan">(config)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">lerna.publish.</span>description</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.lerna.updated">module lerna.updated</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.lerna.updated.checkUpdatedPackages">
+            function <span class="apidocSignatureSpan">lerna.updated.</span>checkUpdatedPackages
+            <span class="apidocSignatureSpan">(config)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.lerna.updated.execute">
+            function <span class="apidocSignatureSpan">lerna.updated.</span>execute
+            <span class="apidocSignatureSpan">(config)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">lerna.updated.</span>description</span>
 
         </li>
 
@@ -113,183 +153,428 @@
 <h1><a href="#apidoc.module.lerna" id="apidoc.module.lerna">module lerna</a></h1>
 
 
-    <h2>
-        <a href="#apidoc.element.lerna.init" id="apidoc.element.lerna.init">
-        function <span class="apidocSignatureSpan">lerna.</span>init
-        <span class="apidocSignatureSpan">(cmd, cwd)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">init = function (cmd, cwd) {
-  var version = require(&#x22;../package.json&#x22;).version;
-  console.log();
-  console.log(chalk.bold(&#x22;Lerna &#x22; + cmd +  &#x22; v&#x22; + version));
-  console.log();
-
-  var config = {};
-
-  config.packagesLoc = path.join(cwd, &#x22;packages&#x22;);
-
-  if (!fs.existsSync(config.packagesLoc)) {
-    console.log(&#x22;Creating packages folder.&#x22;);
-    fs.mkdirSync(config.packagesLoc);
-  }
-
-  config.packageLoc = path.join(cwd, &#x22;package.json&#x22;);
-
-  if (!fs.existsSync(config.packageLoc)) {
-    console.log(&#x22;Creating package.json&#x22;);
-    fs.writeFileSync(config.packageLoc, JSON.stringify({
-      private: true,
-      dependencies: {
-        lerna: &#x22;^&#x22; + version,
-      }
-    }, null, &#x22;  &#x22;));
-  }
-
-  config.versionLoc  = path.join(cwd, &#x22;VERSION&#x22;);
-
-  if (fs.existsSync(config.versionLoc)) {
-    config.currentVersion = fs.readFileSync(config.versionLoc, &#x22;utf8&#x22;).trim();
-  } else {
-    console.log(&#x22;Creating VERSION file.&#x22;);
-    fs.writeFileSync(config.versionLoc, &#x22;0.0.0&#x22;);
-    config.currentVersion = &#x22;0.0.0&#x22;;
-  }
-
-  console.log(&#x22;Current version: &#x22; + config.currentVersion);
-  console.log(&#x22;Version file location: &#x22; + config.versionLoc);
-  console.log(&#x22;Packages location: &#x22; + config.packagesLoc);
-  console.log();
-
-  return config;
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
 
 
 
-    <h2>
-        <a href="#apidoc.element.lerna.progress_bar" id="apidoc.element.lerna.progress_bar">
-        function <span class="apidocSignatureSpan">lerna.</span>progress_bar
-        <span class="apidocSignatureSpan">(total)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">progress_bar = function (total) {
-  var bar = new ProgressBar(&#x22;:packagename ╢:bar╟&#x22;, {
-    total: total,
-    complete: &#x22;█&#x22;,
-    incomplete: &#x22;░&#x22;,
-    clear: true,
-
-    // terminal columns - package name length - additional characters length
-    width: (process.stdout.columns || 100) - 50 - 3
-  });
-
-  return function (name) {
-    bar.tick({
-      packagename: pad(name.slice(0, 50), 50)
-    });
-  };
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
 
 
 </div>
 
 <div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.lerna.init" id="apidoc.module.lerna.init">module lerna.init</a></h1>
+<h1><a href="#apidoc.module.lerna.bootstrap" id="apidoc.module.lerna.bootstrap">module lerna.bootstrap</a></h1>
 
 
     <h2>
-        <a href="#apidoc.element.lerna.init.init" id="apidoc.element.lerna.init.init">
-        function <span class="apidocSignatureSpan">lerna.</span>init
-        <span class="apidocSignatureSpan">(cmd, cwd)</span>
+        <a href="#apidoc.element.lerna.bootstrap.execute" id="apidoc.element.lerna.bootstrap.execute">
+        function <span class="apidocSignatureSpan">lerna.bootstrap.</span>execute
+        <span class="apidocSignatureSpan">(config)</span>
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">init = function (cmd, cwd) {
-  var version = require(&#x22;../package.json&#x22;).version;
-  console.log();
-  console.log(chalk.bold(&#x22;Lerna &#x22; + cmd +  &#x22; v&#x22; + version));
-  console.log();
+    <li>description and source-code<pre class="apidocCodePre">execute = function (config) {
+  // get packages
+  var packages = [];
+  fs.readdirSync(config.packagesLoc).forEach(function (loc) {
+    var name = path.basename(loc);
+    if (name[0] === &#x22;.&#x22;) return;
 
-  var config = {};
+    var pkgLoc = path.join(config.packagesLoc, name, &#x22;package.json&#x22;);
+    if (!fs.existsSync(pkgLoc)) return;
 
-  config.packagesLoc = path.join(cwd, &#x22;packages&#x22;);
+    var pkg = require(pkgLoc);
+    packages.push({
+      folder: name,
+      pkg: pkg,
+      name: pkg.name
+    });
+  });
 
-  if (!fs.existsSync(config.packagesLoc)) {
-    console.log(&#x22;Creating packages folder.&#x22;);
-    fs.mkdirSync(config.packagesLoc);
-  }
+  var completed = false;
 
-  config.packageLoc = path.join(cwd, &#x22;package.json&#x22;);
+  var tick = progressBar(packages.length);
 
-  if (!fs.existsSync(config.packageLoc)) {
-    console.log(&#x22;Creating package.json&#x22;);
-    fs.writeFileSync(config.packageLoc, JSON.stringify({
-      private: true,
-      dependencies: {
-        lerna: &#x22;^&#x22; + version,
-      }
-    }, null, &#x22;  &#x22;));
-  }
+  async.parallelLimit(packages.map(function (root) {
+    return function (done) {
+      var tasks = [];
+      var nodeModulesLoc = path.join(config.packagesLoc, root.folder, &#x22;node_modules&#x22;);
 
-  config.versionLoc  = path.join(cwd, &#x22;VERSION&#x22;);
+      tasks.push(function (done) {
+        mkdirp(nodeModulesLoc, done);
+      });
 
-  if (fs.existsSync(config.versionLoc)) {
-    config.currentVersion = fs.readFileSync(config.versionLoc, &#x22;utf8&#x22;).trim();
-  } else {
-    console.log(&#x22;Creating VERSION file.&#x22;);
-    fs.writeFileSync(config.versionLoc, &#x22;0.0.0&#x22;);
-    config.currentVersion = &#x22;0.0.0&#x22;;
-  }
+      tasks.push(function (done) {
+        async.each(packages, function (sub, done) {
+          var ver = false;
+          if (root.pkg.dependencies) ver = root.pkg.dependencies[sub.name];
+          if (root.pkg.devDependencies &#x26;&#x26; !ver) ver = root.pkg.devDependencies[sub.name];
+          if (!ver) return done();
 
-  console.log(&#x22;Current version: &#x22; + config.currentVersion);
-  console.log(&#x22;Version file location: &#x22; + config.versionLoc);
-  console.log(&#x22;Packages location: &#x22; + config.packagesLoc);
-  console.log();
+          // ensure that this is referring to a local package
+          if (ver[0] !== &#x22;^&#x22; || ver[1] !== config.currentVersion[0]) return done();
 
-  return config;
+          var linkSrc = path.join(config.packagesLoc, sub.folder);
+          var linkDest = path.join(nodeModulesLoc, sub.name);
+
+          rimraf(linkDest, function (err) {
+            if (err) return done(err);
+
+            mkdirp(linkDest, function (err) {
+              if (err) return done(err);
+
+              fs.writeFile(path.join(linkDest, &#x22;package.json&#x22;), JSON.stringify({
+                name: sub.name,
+                version: require(path.join(linkSrc, &#x22;package.json&#x22;)).version
+              }, null, &#x22;  &#x22;), function (err) {
+                if (err) return done(err);
+
+                fs.writeFile(path.join(linkDest, &#x22;index.js&#x22;), &#x22;module.exports = require(&#x22; + JSON.stringify(linkSrc) + &#x22;);&#x22;, done
+);
+              });
+            });
+          });
+        }, done);
+      });
+
+      tasks.push(function (done) {
+        child.exec(&#x22;npm install&#x22;, {
+          cwd: path.join(config.packagesLoc, root.folder)
+        }, function (err, stdout, stderr) {
+          if (err != null) {
+            done(stderr);
+          } else {
+            done();
+          }
+        });
+      });
+
+      tasks.push(function (done) {
+        if (!completed) tick(root.name);
+        done();
+      });
+
+      async.series(tasks, done);
+    };
+  }), 4, function (err) {
+    // don&#x27;t display the ticker if we hit an error and we still have workers
+    completed = true;
+
+    if (err) {
+      console.error(err);
+      console.log();
+      process.exit(1);
+    } else {
+      console.log(chalk.green(&#x22;Successfully bootstrapped &#x22; + packages.length + &#x22; packages.&#x22;));
+      console.log();
+      process.exit();
+    }
+  });
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+if (!(arg in commands)) {
+  console.error(&#x22;Unknown command &#x22; + JSON.stringify(arg));
+  process.exit(1);
+}
+
+var command = commands[arg];
+command.<span class="apidocCodeKeywordSpan">execute</span>(init(arg, process.cwd()));
+...</pre></li>
     </ul>
+
+
 
 
 </div>
 
 <div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.lerna.progress_bar" id="apidoc.module.lerna.progress_bar">module lerna.progress_bar</a></h1>
+<h1><a href="#apidoc.module.lerna.publish" id="apidoc.module.lerna.publish">module lerna.publish</a></h1>
 
 
     <h2>
-        <a href="#apidoc.element.lerna.progress_bar.progress_bar" id="apidoc.element.lerna.progress_bar.progress_bar">
-        function <span class="apidocSignatureSpan">lerna.</span>progress_bar
-        <span class="apidocSignatureSpan">(total)</span>
+        <a href="#apidoc.element.lerna.publish.execute" id="apidoc.element.lerna.publish.execute">
+        function <span class="apidocSignatureSpan">lerna.publish.</span>execute
+        <span class="apidocSignatureSpan">(config)</span>
         </a>
     </h2>
     <ul>
-    <li>description and source-code<pre class="apidocCodePre">progress_bar = function (total) {
-  var bar = new ProgressBar(&#x22;:packagename ╢:bar╟&#x22;, {
-    total: total,
-    complete: &#x22;█&#x22;,
-    incomplete: &#x22;░&#x22;,
-    clear: true,
+    <li>description and source-code<pre class="apidocCodePre">execute = function (config) {
+  var changedPackages = [];
+  var changedFiles = [config.versionLoc];
 
-    // terminal columns - package name length - additional characters length
-    width: (process.stdout.columns || 100) - 50 - 3
+  var FORCE_VERSION = process.env.FORCE_VERSION;
+  FORCE_VERSION = FORCE_VERSION ? FORCE_VERSION.split(&#x22;,&#x22;) : [];
+
+  var NEW_VERSION = getVersion();
+  fs.writeFileSync(config.versionLoc, NEW_VERSION, &#x22;utf8&#x22;);
+
+  //
+
+  try {
+    changedPackages = checkUpdatedPackages(config);
+    console.log(&#x22;Packages to be updated&#x22;);
+    console.log(changedPackages.map(function(pkg) {
+      return &#x22;- &#x22; + pkg;
+    }).join(&#x22;\n&#x22;));
+    updateChangedPackages();
+    updateTag();
+    publish();
+  } catch (err) {
+    onError(err);
+  }
+
+  //
+
+  var createdTag = false;
+
+  function updateTag() {
+    var NEW_TAG_NAME = &#x22;v&#x22; + NEW_VERSION;
+    execSync(&#x22;git commit -m &#x22; + NEW_TAG_NAME);
+    execSync(&#x22;git tag &#x22; + NEW_TAG_NAME);
+    createdTag = true;
+  }
+
+  function removeTag() {
+    if (createdTag) {
+      console.error(chalk.red(&#x22;Attempting to roll back tag creation.&#x22;));
+      execSync(&#x22;git tag -d v&#x22; + NEW_VERSION);
+    }
+  }
+
+  function getVersion() {
+    var input = readline.question(&#x22;New version (Leave blank for patch version): &#x22;);
+
+    var ver = semver.valid(input);
+    if (!ver) {
+      ver = semver.inc(config.currentVersion, input || &#x22;patch&#x22;);
+    }
+
+    if (ver) {
+      return ver;
+    } else {
+      console.log(&#x22;Version provided is not valid semver.&#x22;);
+      return getVersion();
+    }
+  }
+
+  function execSync(cmd) {
+    return child.execSync(cmd, {
+      encoding: &#x22;utf8&#x22;
+    }).trim();
+  }
+
+  function getPackageLocation(name) {
+    return config.packagesLoc + &#x22;/&#x22; + name;
+  }
+
+  function updateDepsObject(deps) {
+    for (var depName in deps) {
+      // ensure this was generated and we&#x27;re on the same major
+      if (deps[depName][0] !== &#x22;^&#x22; || deps[depName][1] !== NEW_VERSION[0]) continue;
+
+      if (changedPackages.indexOf(depName) &#x3e;= 0) {
+        deps[depName] = &#x22;^&#x22; + NEW_VERSION;
+      }
+    }
+  }
+
+  function updateChangedPackages() {
+    changedPackages.forEach(function (name) {
+      var pkgLoc = getPackageLocation(name) + &#x22;/package.json&#x22;;
+      var pkg = require(pkgLoc);
+
+      // set new version
+      pkg.version = NEW_VERSION;
+
+      // updated dependencies
+      updateDepsObject(pkg.dependencies);
+      updateDepsObject(pkg.devDependencies);
+
+      // write new package
+      fs.writeFileSync(pkgLoc, JSON.stringify(pkg, null, &#x22;  &#x22;) + &#x22;\n&#x22;);
+
+      // push to be git committed
+      changedFiles.push(pkgLoc);
+    });
+
+    changedFiles.forEach(function (loc) {
+      execSync(&#x22;git add &#x22; + loc);
+    });
+  }
+
+  function publish() {
+    changedPackages.forEach(function (name) {
+      // prepublish script
+      var prePub = getPackageLocation(name) + &#x22;/scripts/prepublish.js&#x22;;
+      if (fs.existsSync(prePub)) require(prePub);
+    });
+
+    console.log(&#x22;Publishing tagged packages...&#x22;);
+    var tick = progressBar(changedPackages.length);
+
+    async.parallelLimit(changedPackages.map(function (name) {
+      var retries = 0;
+
+      return function run(done) {
+        var loc = getPackageLocation(name);
+
+        child.exec(&#x22;cd &#x22; + loc + &#x22; &#x26;&#x26; npm publish --tag prerelease&#x22;, function (err, stdout, stderr) {
+          if (err || stderr) {
+            err = stderr || err.stack;
+            if (err.indexOf(&#x22;You cannot publish over the previously published version&#x22;) &#x3c; 0) {
+              if (++retries &#x3c; 5) {
+                console.log(chalk.yellow(&#x22;Attempting to retry publishing &#x22; + name + &#x22;...&#x22;));
+                return run(done);
+              } else {
+                console.log(chalk.red(&#x22;Ran out of retries while publishing &#x22; + name));
+                return done(err);
+              }
+            } else {
+              // publishing over an existing package which is likely due to a timeout or something
+              return done();
+            }
+          }
+
+          tick(name);
+
+          // postpublish script
+          var postPub = loc + &#x22;/scripts/postpublish.js&#x22;;
+          if (fs.existsSync(postPub)) require(postPub);
+
+          done();
+        });
+      };
+    }), 4, function (err) {
+      onError(err);
+      ship();
+    });
+  }
+
+  function onError(err) {
+    i ...</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+if (!(arg in commands)) {
+  console.error(&#x22;Unknown command &#x22; + JSON.stringify(arg));
+  process.exit(1);
+}
+
+var command = commands[arg];
+command.<span class="apidocCodeKeywordSpan">execute</span>(init(arg, process.cwd()));
+...</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.lerna.updated" id="apidoc.module.lerna.updated">module lerna.updated</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.lerna.updated.checkUpdatedPackages" id="apidoc.element.lerna.updated.checkUpdatedPackages">
+        function <span class="apidocSignatureSpan">lerna.updated.</span>checkUpdatedPackages
+        <span class="apidocSignatureSpan">(config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">checkUpdatedPackages = function (config) {
+  var changedPackages = [];
+  var FORCE_VERSION = process.env.FORCE_VERSION;
+  FORCE_VERSION = FORCE_VERSION ? FORCE_VERSION.split(&#x22;,&#x22;) : [];
+
+  console.log(&#x22;Checking packages...&#x22;);
+
+  var packageNames = fs.readdirSync(config.packagesLoc).filter(function (name) {
+    return name[0] !== &#x22;.&#x22; &#x26;&#x26; fs.statSync(config.packagesLoc + &#x22;/&#x22; + name).isDirectory();
   });
 
-  return function (name) {
-    bar.tick({
-      packagename: pad(name.slice(0, 50), 50)
-    });
-  };
+  var tick = progressBar(packageNames.length);
+
+  var hasTags = !!execSync(&#x22;git tag&#x22;);
+  var lastTagCommit;
+  var lastTag;
+
+  if (hasTags) {
+    lastTagCommit = execSync(&#x22;git rev-list --tags --max-count=1&#x22;);
+    lastTag = execSync(&#x22;git describe --tags &#x22; + lastTagCommit);
+  }
+
+  packageNames.forEach(function (name) {
+    var cfg = getPackageConfig(config, name);
+    tick(name);
+
+    if (cfg.private) return;
+
+    if (!hasTags) {
+      changedPackages.push(name);
+      return;
+    }
+
+    // check if package has changed since last release
+    var diff = FORCE_VERSION.indexOf(&#x22;*&#x22;) &#x3e;= 0 || FORCE_VERSION.indexOf(name) &#x3e;= 0 ||
+               execSync(&#x22;git diff &#x22; + lastTag + &#x22; -- &#x22; + getPackageLocation(config, name));
+    if (diff) {
+      changedPackages.push(name);
+    }
+  });
+
+  if (!changedPackages.length &#x26;&#x26; !FORCE_VERSION.length) {
+    console.error(chalk.red(&#x22;No updated packages to publish.&#x22;));
+    process.exit(1);
+  } else {
+    return changedPackages;
+  }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var chalk       = require(&#x22;chalk&#x22;);
+var child       = require(&#x22;child_process&#x22;);
+var fs          = require(&#x22;fs&#x22;);
+
+exports.description = &#x22;Check which packages have changed since the last release&#x22;;
+
+exports.execute = function (config) {
+  var changedPackages = exports.<span class="apidocCodeKeywordSpan">checkUpdatedPackages</span>(config).map(function(pkg) {
+    return &#x22;- &#x22; + pkg;
+  }).join(&#x22;\n&#x22;);
+
+  console.log(changedPackages);
+}
+
+exports.checkUpdatedPackages = function (config) {
+...</pre></li>
     </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.lerna.updated.execute" id="apidoc.element.lerna.updated.execute">
+        function <span class="apidocSignatureSpan">lerna.updated.</span>execute
+        <span class="apidocSignatureSpan">(config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">execute = function (config) {
+  var changedPackages = exports.checkUpdatedPackages(config).map(function(pkg) {
+    return &#x22;- &#x22; + pkg;
+  }).join(&#x22;\n&#x22;);
+
+  console.log(changedPackages);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+if (!(arg in commands)) {
+  console.error(&#x22;Unknown command &#x22; + JSON.stringify(arg));
+  process.exit(1);
+}
+
+var command = commands[arg];
+command.<span class="apidocCodeKeywordSpan">execute</span>(init(arg, process.cwd()));
+...</pre></li>
+    </ul>
+
+
 
 
 </div>
