@@ -1,6 +1,6 @@
 # npmdoc-lerna
 
-#### api documentation for  [lerna (v1.1.3)](https://github.com/sebmck/lerna#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-lerna.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-lerna) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-lerna.svg)](https://travis-ci.org/npmdoc/node-npmdoc-lerna)
+#### basic api documentation for  [lerna (v1.1.3)](https://github.com/sebmck/lerna#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-lerna.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-lerna) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-lerna.svg)](https://travis-ci.org/npmdoc/node-npmdoc-lerna)
 
 #### Tool for managing JavaScript projects with multiple packages
 
